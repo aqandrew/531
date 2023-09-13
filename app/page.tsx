@@ -5,6 +5,28 @@ import WorkoutDayPicker, { WorkoutDay } from '@/components/WorkoutDayPicker';
 import OneRepMaxDisplay from '@/components/OneRepMaxDisplay';
 import WorkingSetsDisplay from '@/components/WorkingSetsDisplay';
 
+// TODO get these values from database
+const dummyData = {
+	user: 'andrew',
+	workouts: [
+		{
+			type: 'push',
+			oneRepMax: 210,
+			oneRepMaxGoal: 225,
+		},
+		{
+			type: 'pull',
+			oneRepMax: 310,
+			oneRepMaxGoal: 350,
+		},
+		{
+			type: 'leg',
+			oneRepMax: 235,
+			oneRepMaxGoal: 300,
+		},
+	],
+};
+
 export default function Home() {
 	const [workoutDay, setWorkoutDay] = useState<WorkoutDay>('push');
 	const [oneRepMax, setOneRepMax] = useState<number>(0);
@@ -13,21 +35,9 @@ export default function Home() {
 	const workingOneRepMax = oneRepMax * 0.9;
 
 	useEffect(() => {
-		// TODO get these values from database
-		switch (workoutDay) {
-			case 'push':
-				setOneRepMax(210);
-				setOneRepMaxGoal(225);
-				break;
-			case 'pull':
-				setOneRepMax(310);
-				setOneRepMaxGoal(350);
-				break;
-			case 'leg':
-				setOneRepMax(235);
-				setOneRepMaxGoal(300);
-				break;
-		}
+		const workout = dummyData.workouts.find((w) => w.type === workoutDay);
+		setOneRepMax(workout!.oneRepMax);
+		setOneRepMaxGoal(workout!.oneRepMaxGoal);
 	}, [workoutDay]);
 
 	function isWorkoutDayChecked(value: WorkoutDay): boolean {
