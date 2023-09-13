@@ -24,36 +24,18 @@ export default function Home() {
 				<fieldset>
 					<legend>choose workout</legend>
 					<div>
-						<label>
-							<input
-								type="radio"
-								name="workout-day"
-								value="push"
-								checked={isWorkoutDayChecked('push')}
-								onChange={handleWorkoutDayChange}
-							/>
-							push
-						</label>
-						<label>
-							<input
-								type="radio"
-								name="workout-day"
-								value="pull"
-								checked={isWorkoutDayChecked('pull')}
-								onChange={handleWorkoutDayChange}
-							/>
-							pull
-						</label>
-						<label>
-							<input
-								type="radio"
-								name="workout-day"
-								value="leg"
-								checked={isWorkoutDayChecked('leg')}
-								onChange={handleWorkoutDayChange}
-							/>
-							leg
-						</label>
+						{workoutDays.map((day) => (
+							<label>
+								<input
+									type="radio"
+									name="workout-day"
+									value={day}
+									checked={isWorkoutDayChecked(day)}
+									onChange={handleWorkoutDayChange}
+								/>
+								{day}
+							</label>
+						))}
 					</div>
 				</fieldset>
 			</header>
