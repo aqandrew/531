@@ -1,14 +1,13 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
-
-const workoutDays = ['push', 'pull', 'leg'] as const;
-type WorkoutDay = (typeof workoutDays)[number];
+import WorkoutDayPicker, { WorkoutDay } from '@/components/WorkoutDayPicker';
+import OneRepMaxDisplay from '@/components/OneRepMaxDisplay';
 
 export default function Home() {
 	const [workoutDay, setWorkoutDay] = useState<WorkoutDay>('push');
 
-	function isWorkoutDayChecked(value: string): boolean {
+	function isWorkoutDayChecked(value: WorkoutDay): boolean {
 		return workoutDay === value;
 	}
 
@@ -21,25 +20,14 @@ export default function Home() {
 		<>
 			<header>
 				<h1>531</h1>
-				<fieldset>
-					<legend>choose workout</legend>
-					<div>
-						{workoutDays.map((day) => (
-							<label>
-								<input
-									type="radio"
-									name="workout-day"
-									value={day}
-									checked={isWorkoutDayChecked(day)}
-									onChange={handleWorkoutDayChange}
-								/>
-								{day}
-							</label>
-						))}
-					</div>
-				</fieldset>
+				<WorkoutDayPicker
+					isWorkoutDayChecked={isWorkoutDayChecked}
+					handleWorkoutDayChange={handleWorkoutDayChange}
+				></WorkoutDayPicker>
 			</header>
-			<main>TODO</main>
+			<main>
+				<OneRepMaxDisplay workoutDay={workoutDay}></OneRepMaxDisplay>
+			</main>
 		</>
 	);
 }

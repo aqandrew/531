@@ -2,3 +2,8 @@ label,
 input {
 	cursor: pointer;
 }
+
+th,
+td {
+	border: 1px solid black;
+}
