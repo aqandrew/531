@@ -15,10 +15,9 @@ export default function WorkoutDayPicker({
 	return (
 		<fieldset>
 			<legend>choose workout</legend>
-			<div>
+			<div className="radio-group">
 				{workoutDays.map((day) => (
 					<label key={day}>
-						{/* TODO why does default selected (push) get cleared after hydration? */}
 						<input
 							type="radio"
 							name="workout-day"

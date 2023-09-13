@@ -1,42 +1,28 @@
-import { WorkoutDay } from './WorkoutDayPicker';
-
 interface OneRepMaxDisplayProps {
-	workoutDay: WorkoutDay;
+	oneRepMax: number;
+	workingOneRepMax: number;
+	oneRepMaxGoal: number;
 }
 
 export default function OneRepMaxDisplay({
-	workoutDay,
+	oneRepMax,
+	workingOneRepMax,
+	oneRepMaxGoal,
 }: OneRepMaxDisplayProps) {
-	let oneRepMax: number;
-	let oneRepMaxGoal: number;
-
-	// TODO get these values from database
-	switch (workoutDay) {
-		case 'push':
-			oneRepMax = 210;
-			oneRepMaxGoal = 225;
-			break;
-		case 'pull':
-			oneRepMax = 310;
-			oneRepMaxGoal = 350;
-			break;
-		case 'leg':
-			oneRepMax = 235;
-			oneRepMaxGoal = 300;
-			break;
-	}
-
 	return (
 		<table>
 			<thead>
 				<tr>
 					<th>current 1rm</th>
+					<th>working 1rm</th>
 					<th>next 1rm goal</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>{oneRepMax}</td>
+					<td>{workingOneRepMax}</td>
+					{/* TODO add UI to update goal */}
 					<td>{oneRepMaxGoal}</td>
 				</tr>
 			</tbody>

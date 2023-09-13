@@ -1,6 +1,23 @@
+fieldset,
+table {
+	margin-bottom: 2rem;
+}
+
 label,
 input {
 	cursor: pointer;
+}
+
+.radio-group {
+	display: flex;
+
+	> * {
+		flex: 1;
+	}
+}
+
+table {
+	width: 100%;
 }
 
 th,
